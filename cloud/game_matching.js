@@ -17,8 +17,10 @@ var _matchTurnKeyPlayer1 = "player_1";
 var _matchTurnKeyPlayer2 = "player_2";
 var _wordsArrayKey= "words";
 var _wordsArray = [];
-var _lastLetterKey = "lastLeter";
+var _lastLetterKey = "lastLetter";
 var _lastLetterString = "";
+var _lastWordKey = "lastWord";
+var _lastWordString = "";
 
 var Match = Parse.Object.extend(_matchClassName);
 
@@ -89,10 +91,9 @@ _joinMatchAttempt = function(match, player, options) {
         match.save(null, {
           success: function(newMatch) {
             // Return the game
-            var isTurn = newMatch.get(_matchTurnKey) === _matchTurnKeyPlayer2;
-            _log("Game joined, and it isTurn is : " + isTurn, player);
+           
             _log(JSON.stringify(newMatch), player);
-            options.success(newMatch, isTurn);
+            options.success(newMatch);
           },
         error: options.error });
       } else {
@@ -111,9 +112,9 @@ _createNewMatch = function(player, options) {
   match.set(_matchLockKey, _matchLockKeyInitial);
   match.set(_matchPlayer1Key, player); // challenger is player 1
   match.set(_matchStatusKey, _matchStatusKeyWaiting); // wait for second player
-  match.set(_matchTurnKey, _matchTurnKeyPlayer1); // default challenger starts
   match.set(_wordsArrayKey,_wordsArray); // init the words array
   match.set(_lastLetterKey,_lastLetterString); // init the last letter
+  match.set(_lastWordKey,_lastWordString); // init the last Word
 
   _log("Creating new game with properties:", player);
   _log(JSON.stringify(match), player);
@@ -123,7 +124,7 @@ _createNewMatch = function(player, options) {
       // Return the game
       _log("Game created successfully, now waiting for players", player);
       _log(JSON.stringify(newMatch), player);
-      options.success(newMatch, true);
+      options.success(newMatch);
     },
   error: options.error });
 };
