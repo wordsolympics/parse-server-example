@@ -1,12 +1,12 @@
 // === Model classes and keys ===
 
-var _matchClassName = "Match";
+var _matchClassName = "Games";
 var _matchLockKey = "gameLock";
 var _matchLockKeyInitial = 1;
 var _matchLockKeyMax = 2;
 var _matchPlayer1Key = "player1";
 var _matchPlayer2Key = "player2";
-var _matchStatusKey = "gameStatus";
+var _matchStatusKey = "state";
 var _matchStatusKeyWaiting = "waiting";
 var _matchStatusKeyInProgress = "in_progress";
 var _matchStatusKeyFinished = "finished";
