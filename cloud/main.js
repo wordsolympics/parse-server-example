@@ -10,7 +10,7 @@ Parse.Cloud.define("joinNewGame", function(request, response) {
   
   if (request.user) {
     GameManager.joinAnonymousGame(request.user, {
-      success: function(match, isTurn) {
+      success: function(match) {
         response.success(match);
       },
       error: function(error) {
